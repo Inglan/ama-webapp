@@ -25,7 +25,6 @@ export function LoginForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
         <Tabs defaultValue="login" className="flex-1">
-          <CardHeader></CardHeader>
           <CardContent className="grid gap-6">
             <Button variant="outline" className="w-full">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -38,7 +37,7 @@ export function LoginForm({
             </Button>
             <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
               <span className="relative z-10 bg-card px-2 text-muted-foreground">
-                Or continue with
+                Or use an email
               </span>
             </div>
             <TabsList className="w-full">
