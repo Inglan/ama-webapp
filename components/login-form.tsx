@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Card,
   CardContent,
@@ -14,6 +15,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuthActions } from "@convex-dev/auth/react";
 import { useState } from "react";
+import Link from "next/link";
 
 export function LoginForm({
   className,
@@ -108,6 +110,14 @@ export function LoginForm({
                     placeholder="••••••••"
                     required
                   />
+                </div>
+                <div className="flex flex-row gap-2">
+                  <Checkbox id="terms" />
+                  <Label htmlFor="terms" className="block">
+                    I have read and accept the{" "}
+                    <Link href="/terms">Terms of Service</Link> and{" "}
+                    <Link href="/privacy">Privacy Policy</Link>
+                  </Label>
                 </div>
                 <input type="hidden" name="flow" value="signUp" />
                 <Button type="submit" className="w-full">
