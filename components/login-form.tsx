@@ -112,7 +112,7 @@ export function LoginForm({
                   />
                 </div>
                 <div className="flex flex-row gap-2">
-                  <Checkbox id="terms" />
+                  <Checkbox id="terms" required />
                   <Label htmlFor="terms" className="block">
                     I have read and accept the{" "}
                     <Link href="/terms">Terms of Service</Link> and{" "}
