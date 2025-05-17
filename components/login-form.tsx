@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -9,11 +11,15 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useAuthActions } from "@convex-dev/auth/react";
+import { useState } from "react";
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const { signIn } = useAuthActions();
+  const [step, setStep] = useState<"signup" | "login">("login");
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -21,13 +27,20 @@ export function LoginForm({
           <CardTitle className="text-xl">Welcome back</CardTitle>
         </CardHeader>
         <CardContent>
-          <form>
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+              const formData = new FormData(event.currentTarget);
+              void signIn("password", formData);
+            }}
+          >
             <div className="grid gap-6">
               <div className="grid gap-3">
                 <div className="grid gap-3">
                   <Label htmlFor="email">Email</Label>
                   <Input
                     id="email"
+                    name="email"
                     type="email"
                     placeholder="me@example.com"
                     required
@@ -43,13 +56,25 @@ export function LoginForm({
                       Forgot your password?
                     </a>
                   </div>
-                  <Input id="password" type="password" required />
+                  <Input
+                    id="password"
+                    name="password"
+                    type="password"
+                    required
+                  />
                 </div>
+                <input type="hidden" name="step" value={step} />
                 <Button type="submit" className="w-full">
-                  Login
+                  {step === "login" ? "Login" : "Sign up"}
                 </Button>
-                <Button variant="outline" className="w-full">
-                  Sign up
+                <Button
+                  variant="outline"
+                  className="w-full"
+                  onClick={() => {
+                    setStep(step === "login" ? "signup" : "login");
+                  }}
+                >
+                  {step === "login" ? "Sign up instead" : "Login instead"}
                 </Button>
               </div>
             </div>
