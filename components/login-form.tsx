@@ -24,6 +24,7 @@ import { useAuthActions } from "@convex-dev/auth/react";
 import { useState } from "react";
 import Link from "next/link";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
+import { toast } from "sonner";
 
 function Form({
   step,
@@ -94,6 +95,8 @@ function OTP({
   code: string;
   setCode: React.Dispatch<React.SetStateAction<string>>;
 }) {
+  const { signIn } = useAuthActions();
+
   return (
     <>
       <div>A code has been sent to your email address</div>
@@ -101,7 +104,13 @@ function OTP({
         maxLength={6}
         pattern={REGEXP_ONLY_DIGITS}
         value={code}
-        onChange={(value) => setCode(value)}
+        onChange={(value) => {
+          setCode(value);
+          if (value.length === 6) {
+            const form = document.getElementById("otpform") as HTMLFormElement;
+            form?.submit();
+          }
+        }}
       >
         <InputOTPGroup>
           <InputOTPSlot index={0} />
@@ -115,6 +124,19 @@ function OTP({
           <InputOTPSlot index={5} />
         </InputOTPGroup>
       </InputOTP>
+      <form
+        id="otpform"
+        onSubmit={(event) => {
+          event.preventDefault();
+          const formData = new FormData(event.target as HTMLFormElement);
+          void signIn("resend-otp", formData).then(() => {
+            toast.success("logged in");
+          });
+        }}
+      >
+        <input type="hidden" name="code" value={code} />
+        <input type="hidden" name="email" value={email} />
+      </form>
     </>
   );
 }
