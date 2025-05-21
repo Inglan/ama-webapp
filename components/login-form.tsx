@@ -108,8 +108,12 @@ function OTP({
         onChange={(value) => {
           setCode(value);
           if (value.length === 6) {
-            const form = document.getElementById("otpform") as HTMLFormElement;
-            form?.submit();
+            const formData = new FormData(
+              document.getElementById("otpform") as HTMLFormElement,
+            );
+            void signIn("resend-otp", formData).then(() => {
+              toast.success("logged in");
+            });
           }
         }}
       >
@@ -125,16 +129,7 @@ function OTP({
           <InputOTPSlot index={5} />
         </InputOTPGroup>
       </InputOTP>
-      <form
-        id="otpform"
-        onSubmit={(event) => {
-          event.preventDefault();
-          const formData = new FormData(event.target as HTMLFormElement);
-          void signIn("resend-otp", formData).then(() => {
-            toast.success("logged in");
-          });
-        }}
-      >
+      <form id="otpform">
         <input type="hidden" name="code" value={code} />
         <input type="hidden" name="email" value={email} />
       </form>
