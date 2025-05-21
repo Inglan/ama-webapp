@@ -101,36 +101,36 @@ function OTP({
   return (
     <>
       <div>A code has been sent to your email address</div>
-      <InputOTP
-        maxLength={6}
-        pattern={REGEXP_ONLY_DIGITS}
-        value={code}
-        onChange={(value) => {
-          setCode(value);
-          if (value.length === 6) {
-            const formData = new FormData(
-              document.getElementById("otpform") as HTMLFormElement,
-            );
-            void signIn("resend-otp", formData).then(() => {
-              toast.success("logged in");
-            });
-          }
-        }}
-      >
-        <InputOTPGroup>
-          <InputOTPSlot index={0} />
-          <InputOTPSlot index={1} />
-          <InputOTPSlot index={2} />
-        </InputOTPGroup>
-        <InputOTPSeparator />
-        <InputOTPGroup>
-          <InputOTPSlot index={3} />
-          <InputOTPSlot index={4} />
-          <InputOTPSlot index={5} />
-        </InputOTPGroup>
-      </InputOTP>
       <form id="otpform">
-        <input type="hidden" name="code" value={code} />
+        <InputOTP
+          maxLength={6}
+          pattern={REGEXP_ONLY_DIGITS}
+          value={code}
+          name="code"
+          onChange={(value) => {
+            setCode(value);
+            if (value.length === 6) {
+              const formData = new FormData(
+                document.getElementById("otpform") as HTMLFormElement,
+              );
+              void signIn("resend-otp", formData).then(() => {
+                toast.success("logged in");
+              });
+            }
+          }}
+        >
+          <InputOTPGroup>
+            <InputOTPSlot index={0} />
+            <InputOTPSlot index={1} />
+            <InputOTPSlot index={2} />
+          </InputOTPGroup>
+          <InputOTPSeparator />
+          <InputOTPGroup>
+            <InputOTPSlot index={3} />
+            <InputOTPSlot index={4} />
+            <InputOTPSlot index={5} />
+          </InputOTPGroup>
+        </InputOTP>
         <input type="hidden" name="email" value={email} />
       </form>
     </>
