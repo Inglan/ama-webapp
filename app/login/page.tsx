@@ -7,7 +7,7 @@ export default function LoginPage() {
         <span className="flex items-center gap-2 self-center font-medium">
           Aranda Music and Arts Program
         </span>
-        <LoginForm />
+        <LoginForm className="w-96" />
       </div>
     </div>
   );

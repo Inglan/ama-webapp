@@ -26,7 +26,7 @@ export function LoginForm({
   const [step, setStep] = useState<"form" | "loading" | "otp">("form");
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card>
+      <Card className="w-96">
         <CardContent className="grid gap-3">
           <Button variant="outline" className="w-full">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
