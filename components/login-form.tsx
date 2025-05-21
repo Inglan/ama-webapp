@@ -11,14 +11,24 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@/components/ui/input-otp";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuthActions } from "@convex-dev/auth/react";
 import { useState } from "react";
 import Link from "next/link";
+import { REGEXP_ONLY_DIGITS } from "input-otp";
 
-function Form({ step, setStep }: { 
+function Form({
+  step,
+  setStep,
+}: {
   step: "form" | "loading" | "otp";
   setStep: React.Dispatch<React.SetStateAction<"form" | "loading" | "otp">>;
 }) {
@@ -39,10 +49,10 @@ function Form({ step, setStep }: {
         </span>
       </div>
       <form
-        className="flex flex-row gap-3"
+        className="w-full flex flex-row gap-3"
         onSubmit={(event) => {
           event.preventDefault();
-          setStep("loading");
+          setStep("otp");
         }}
       >
         <Input required type="email" placeholder="me@example.com" />
@@ -50,6 +60,32 @@ function Form({ step, setStep }: {
           Continue
         </Button>
       </form>
+    </>
+  );
+}
+
+function OTP({
+  step,
+  setStep,
+}: {
+  step: "form" | "loading" | "otp";
+  setStep: React.Dispatch<React.SetStateAction<"form" | "loading" | "otp">>;
+}) {
+  return (
+    <>
+      <InputOTP maxLength={6} pattern={REGEXP_ONLY_DIGITS}>
+        <InputOTPGroup>
+          <InputOTPSlot index={0} />
+          <InputOTPSlot index={1} />
+          <InputOTPSlot index={2} />
+        </InputOTPGroup>
+        <InputOTPSeparator />
+        <InputOTPGroup>
+          <InputOTPSlot index={3} />
+          <InputOTPSlot index={4} />
+          <InputOTPSlot index={5} />
+        </InputOTPGroup>
+      </InputOTP>
     </>
   );
 }
@@ -63,8 +99,9 @@ export function LoginForm({
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="w-96">
-        <CardContent className="grid gap-3">
-          <Form step={step} setStep={setStep} />
+        <CardContent className="flex flex-col gap-3 items-center">
+          {step !== "otp" && <Form step={step} setStep={setStep} />}
+          {step === "otp" && <OTP step={step} setStep={setStep} />}
         </CardContent>
       </Card>
     </div>
