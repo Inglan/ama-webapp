@@ -28,9 +28,13 @@ import { REGEXP_ONLY_DIGITS } from "input-otp";
 function Form({
   step,
   setStep,
+  email,
+  setEmail,
 }: {
   step: "form" | "loading" | "otp";
   setStep: React.Dispatch<React.SetStateAction<"form" | "loading" | "otp">>;
+  email: string;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
 }) {
   return (
     <>
@@ -55,7 +59,13 @@ function Form({
           setStep("otp");
         }}
       >
-        <Input required type="email" placeholder="me@example.com" />
+        <Input
+          required
+          type="email"
+          placeholder="me@example.com"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
         <Button type="submit" disabled={step === "loading"}>
           Continue
         </Button>
@@ -67,13 +77,25 @@ function Form({
 function OTP({
   step,
   setStep,
+  email,
+  code,
+  setCode,
 }: {
   step: "form" | "loading" | "otp";
   setStep: React.Dispatch<React.SetStateAction<"form" | "loading" | "otp">>;
+  email: string;
+  code: string;
+  setCode: React.Dispatch<React.SetStateAction<string>>;
 }) {
   return (
     <>
-      <InputOTP maxLength={6} pattern={REGEXP_ONLY_DIGITS}>
+      <div>A code has been sent to your email address</div>
+      <InputOTP
+        maxLength={6}
+        pattern={REGEXP_ONLY_DIGITS}
+        value={code}
+        onChange={(value) => setCode(value)}
+      >
         <InputOTPGroup>
           <InputOTPSlot index={0} />
           <InputOTPSlot index={1} />
@@ -96,12 +118,29 @@ export function LoginForm({
 }: React.ComponentProps<"div">) {
   const { signIn } = useAuthActions();
   const [step, setStep] = useState<"form" | "loading" | "otp">("form");
+  const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="w-96">
         <CardContent className="flex flex-col gap-3 items-center">
-          {step !== "otp" && <Form step={step} setStep={setStep} />}
-          {step === "otp" && <OTP step={step} setStep={setStep} />}
+          {step !== "otp" && (
+            <Form
+              step={step}
+              setStep={setStep}
+              email={email}
+              setEmail={setEmail}
+            />
+          )}
+          {step === "otp" && (
+            <OTP
+              step={step}
+              setStep={setStep}
+              code={code}
+              setCode={setCode}
+              email={email}
+            />
+          )}
         </CardContent>
       </Card>
     </div>
