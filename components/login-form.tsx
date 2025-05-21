@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Loader2 } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Card,
@@ -22,7 +23,7 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<"div">) {
   const { signIn } = useAuthActions();
-  const [step, setStep] = useState<"signup" | "login">("login");
+  const [step, setStep] = useState<"form" | "loading" | "otp">("form");
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -41,10 +42,18 @@ export function LoginForm({
               Or use an email
             </span>
           </div>
-          <div className="flex flex-row gap-3">
+          <form
+            className="flex flex-row gap-3"
+            onSubmit={(event) => {
+              event.preventDefault();
+              setStep("loading");
+            }}
+          >
             <Input type="email" placeholder="me@example.com" />
-            <Button>Continue</Button>
-          </div>
+            <Button type="submit" disabled={step === "loading"}>
+              Continue
+            </Button>
+          </form>
         </CardContent>
       </Card>
     </div>
