@@ -5,17 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import {
   Card,
   CardContent,
   CardDescription,
@@ -67,13 +56,6 @@ export function LoginForm({
           </form>
         </CardContent>
       </Card>
-      <AlertDialog open>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>OTP Code</AlertDialogTitle>
-          </AlertDialogHeader>
-        </AlertDialogContent>
-      </AlertDialog>
     </div>
   );
 }
