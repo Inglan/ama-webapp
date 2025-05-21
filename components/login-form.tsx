@@ -49,7 +49,7 @@ export function LoginForm({
               setStep("loading");
             }}
           >
-            <Input type="email" placeholder="me@example.com" />
+            <Input required type="email" placeholder="me@example.com" />
             <Button type="submit" disabled={step === "loading"}>
               Continue
             </Button>
