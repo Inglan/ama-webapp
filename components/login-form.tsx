@@ -36,6 +36,8 @@ function Form({
   email: string;
   setEmail: React.Dispatch<React.SetStateAction<string>>;
 }) {
+  const { signIn } = useAuthActions();
+
   return (
     <>
       <Button variant="outline" className="w-full">
@@ -57,6 +59,10 @@ function Form({
         onSubmit={(event) => {
           event.preventDefault();
           setStep("otp");
+          const formData = new FormData(event.currentTarget);
+          void signIn("resend-otp", formData).then(() => {
+            setStep("otp");
+          });
         }}
       >
         <Input
@@ -116,7 +122,6 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const { signIn } = useAuthActions();
   const [step, setStep] = useState<"form" | "loading" | "otp">("form");
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
