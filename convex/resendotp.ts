@@ -25,7 +25,7 @@ export const ResendOTP = Email({
   async sendVerificationRequest({ identifier: email, provider, token }) {
     const resend = new ResendAPI(provider.apiKey);
     const { error } = await resend.emails.send({
-      from: "Aranda Music and Arts Program <noreply@arandamusicprogram.org>",
+      from: "Aranda Music and Arts Program <onboarding@resend.dev>",
       to: [email],
       subject: `Sign in to AMA portal`,
       text: "Your code is " + token,
