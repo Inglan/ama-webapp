@@ -68,6 +68,7 @@ function Form({
         <Input
           required
           type="email"
+          name="email"
           placeholder="me@example.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
