@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Authenticated, Unauthenticated, AuthLoading } from "convex/react";
 import {
   Card,
   CardContent,
@@ -169,6 +170,7 @@ export function LoginForm({
               email={email}
             />
           )}
+          <Authenticated>your in</Authenticated>
         </CardContent>
       </Card>
     </div>
