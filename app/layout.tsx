@@ -5,8 +5,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { ConvexClientProvider } from "./ConvexClientProvider";
 import { ConvexAuthNextjsServerProvider } from "@convex-dev/auth/nextjs/server";
 import { Toaster } from "@/components/ui/sonner";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,14 +39,8 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <SidebarProvider>
-                <AppSidebar />
-                <main>
-                  <SidebarTrigger />
-                  {children}
-                </main>
-                <Toaster />
-              </SidebarProvider>
+              <main>{children}</main>
+              <Toaster />
             </ThemeProvider>
           </ConvexClientProvider>
         </body>
