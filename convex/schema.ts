@@ -10,7 +10,12 @@ export default defineSchema({
     email: v.optional(v.string()),
     emailVerificationTime: v.optional(v.float64()),
     role: v.optional(
-      v.union(v.literal("admin"), v.literal("parent"), v.literal("teacher")),
+      v.union(
+        v.literal("superadmin"),
+        v.literal("admin"),
+        v.literal("parent"),
+        v.literal("teacher"),
+      ),
     ),
   }).index("email", ["email"]),
   contacts: defineTable({
