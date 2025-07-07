@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
+import { Loader2, LoaderCircle } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Authenticated, Unauthenticated, AuthLoading } from "convex/react";
 import {
@@ -113,6 +113,7 @@ function OTP({
               const formData = new FormData(
                 document.getElementById("otpform") as HTMLFormElement,
               );
+              setStep("loading");
               void signIn("resend-otp", formData).then(() => {
                 toast.success("logged in");
               });
@@ -148,13 +149,18 @@ export function LoginForm({
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card className="w-96">
         <CardContent className="flex flex-col gap-3 items-center">
-          {step !== "otp" && (
+          {step == "form" && (
             <Form
               step={step}
               setStep={setStep}
               email={email}
               setEmail={setEmail}
             />
+          )}
+          {step == "loading" && (
+            <div className="flex flex-col gap-3 items-center">
+              <LoaderCircle className="w-10 h-10 animate-spin" />
+            </div>
           )}
           {step === "otp" && (
             <OTP
