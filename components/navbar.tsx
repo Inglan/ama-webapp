@@ -99,7 +99,7 @@ export default function Navbar() {
           <DrawerHeader>
             <DrawerTitle>Aranda Music and Arts</DrawerTitle>
           </DrawerHeader>
-          <div className="flex flex-col gap-3 p-3">
+          <div className="flex flex-col gap-3 px-3">
             {menu.map((item) => (
               <Button
                 variant="ghost"
