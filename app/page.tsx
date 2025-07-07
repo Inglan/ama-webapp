@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -16,6 +17,9 @@ export default function Home() {
         <h2 className="text-2xl text-center">
           An after school music, drama and art program
         </h2>
+        <Button asChild>
+          <Link href="/join">Join Now</Link>
+        </Button>
       </div>
       <div className="prose prose-invert mx-auto py-4">
         <h2>The Program</h2>
