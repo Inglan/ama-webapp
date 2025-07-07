@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
 import { Authenticated, Unauthenticated, AuthLoading } from "convex/react";
-import { LoaderCircle } from "lucide-react";
+import { LoaderCircle, Menu } from "lucide-react";
 import { useAuthActions } from "@convex-dev/auth/react";
 import { Button } from "./ui/button";
 
@@ -79,6 +79,9 @@ export default function Navbar() {
           </Button>
         </NavigationMenuList>
       </NavigationMenu>
+      <Button className="md:hidden" size="icon">
+        <Menu />
+      </Button>
     </div>
   );
 }
