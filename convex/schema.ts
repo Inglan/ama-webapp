@@ -51,6 +51,6 @@ export default defineSchema({
       v.literal("11"),
       v.literal("12"),
     ),
-    status: v.union(v.literal("active"), v.literal("inactive")),
+    status: v.union(v.literal("requested"), v.literal("confirmed")),
   }).index("by_student", ["studentId"]),
 });
