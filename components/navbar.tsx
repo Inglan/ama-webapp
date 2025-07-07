@@ -15,6 +15,7 @@ import Link from "next/link";
 import { Authenticated, Unauthenticated, AuthLoading } from "convex/react";
 import { LoaderCircle } from "lucide-react";
 import { useAuthActions } from "@convex-dev/auth/react";
+import { Button } from "./ui/button";
 
 const menu = [
   {
@@ -73,6 +74,9 @@ export default function Navbar() {
               </NavigationMenuLink>
             </NavigationMenuItem>
           </Unauthenticated>
+          <Button asChild>
+            <Link href="/join">Join Now</Link>
+          </Button>
         </NavigationMenuList>
       </NavigationMenu>
     </div>
