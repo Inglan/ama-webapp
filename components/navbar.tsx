@@ -113,7 +113,9 @@ export default function Navbar() {
                 className="justify-start"
                 asChild
               >
-                <Link href={item.href}>{item.name}</Link>
+                <Link onClick={() => setMobileMenuOpen(false)} href={item.href}>
+                  {item.name}
+                </Link>
               </Button>
             ))}
 
@@ -122,10 +124,18 @@ export default function Navbar() {
             </AuthLoading>
             <Authenticated>
               <Button variant="ghost" className="justify-start" asChild>
-                <Link href="/dashboard">Dashboard</Link>
+                <Link
+                  onClick={() => setMobileMenuOpen(false)}
+                  href="/dashboard"
+                >
+                  Dashboard
+                </Link>
               </Button>
               <Button
-                onClick={signOut}
+                onClick={() => {
+                  signOut();
+                  setMobileMenuOpen(false);
+                }}
                 variant="outline"
                 className="cursor-pointer"
               >
@@ -134,11 +144,15 @@ export default function Navbar() {
             </Authenticated>
             <Unauthenticated>
               <Button variant="outline" asChild>
-                <Link href="/login">Login</Link>
+                <Link onClick={() => setMobileMenuOpen(false)} href="/login">
+                  Login
+                </Link>
               </Button>
             </Unauthenticated>
             <Button variant="default" asChild>
-              <Link href="/join">Join Now</Link>
+              <Link onClick={() => setMobileMenuOpen(false)} href="/join">
+                Join Now
+              </Link>
             </Button>
           </div>
         </DrawerContent>
