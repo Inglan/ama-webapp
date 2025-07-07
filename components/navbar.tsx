@@ -36,7 +36,7 @@ export default function Navbar() {
   const { signOut } = useAuthActions();
 
   return (
-    <div className="w-screen fixed left-0 top-0 bg-background border-b border-b-border flex gap-2 p-2 px-6 flex-row items-center">
+    <div className="w-screen fixed left-0 top-0 bg-background border-b border-b-border flex gap-2 p-2 px-6 flex-row items-center z-20">
       <Link href="/">Aranda Music and Arts</Link>
       <NavigationMenu>
         <NavigationMenuList>
