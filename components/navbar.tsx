@@ -36,7 +36,7 @@ export default function Navbar() {
 
   return (
     <div className="w-screen fixed left-0 top-0 bg-background border-b border-b-border flex gap-2 p-2 px-6 flex-row items-center">
-      Aranda Music and Arts
+      <Link href="/">Aranda Music and Arts</Link>
       <NavigationMenu>
         <NavigationMenuList>
           {menu.map((item) => (
