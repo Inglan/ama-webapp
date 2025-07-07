@@ -26,6 +26,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import { useState } from "react";
 
 const menu = [
   {
@@ -44,6 +45,7 @@ const menu = [
 
 export default function Navbar() {
   const { signOut } = useAuthActions();
+  let [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <div className="w-screen fixed left-0 top-0 bg-background border-b border-b-border flex gap-2 p-2 px-6 flex-row items-center z-20">
@@ -89,7 +91,11 @@ export default function Navbar() {
           </Button>
         </NavigationMenuList>
       </NavigationMenu>
-      <Drawer direction="right">
+      <Drawer
+        direction="right"
+        open={mobileMenuOpen}
+        onOpenChange={setMobileMenuOpen}
+      >
         <DrawerTrigger
           className={buttonVariants({ variant: "outline", size: "icon" })}
         >
