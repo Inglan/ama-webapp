@@ -38,7 +38,7 @@ export default function Navbar() {
   return (
     <div className="w-screen fixed left-0 top-0 bg-background border-b border-b-border flex gap-2 p-2 px-6 flex-row items-center z-20">
       <Link href="/">Aranda Music and Arts</Link>
-      <NavigationMenu>
+      <NavigationMenu className="md:block hidden">
         <NavigationMenuList>
           {menu.map((item) => (
             <NavigationMenuItem key={item.href}>
@@ -50,7 +50,7 @@ export default function Navbar() {
         </NavigationMenuList>
       </NavigationMenu>
       <div className="grow"></div>
-      <NavigationMenu>
+      <NavigationMenu className="md:block hidden">
         <NavigationMenuList>
           <AuthLoading>
             <LoaderCircle className="w-4 h-4 animate-spin" />
