@@ -35,7 +35,7 @@ export default defineSchema({
   enrollments: defineTable({
     year: v.number(),
     studentId: v.id("students"),
-    classId: v.id("class"),
+    activityId: v.id("activities"),
     studentYear: v.union(
       v.literal("K"),
       v.literal("1"),
@@ -53,4 +53,9 @@ export default defineSchema({
     ),
     status: v.union(v.literal("requested"), v.literal("confirmed")),
   }).index("by_student", ["studentId"]),
+  activities: defineTable({
+    name: v.string(),
+    type: v.union(v.literal("individual"), v.literal("group")),
+    teacherId: v.id("users"),
+  }).index("by_teacher", ["teacherId"]),
 });
