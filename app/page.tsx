@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <div className="w-full h-screen relative flex justify-center items-center flex-col gap-3">
+      <div className="w-full h-screen relative flex justify-center items-center flex-col gap-3 p-10">
         <video
           src="/hero.mp4"
           className="w-full h-full object-cover opacity-50 absolute top-0 left-0 -z-10"
