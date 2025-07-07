@@ -120,7 +120,7 @@ function OTP({
               );
               setStep("loading");
               void signIn("resend-otp", formData).then(() => {
-                toast.success("logged in");
+                toast.success("Logged in");
               });
             }
           }}
@@ -176,7 +176,6 @@ export function LoginForm({
               email={email}
             />
           )}
-          <Authenticated>your in</Authenticated>
         </CardContent>
       </Card>
     </div>
