@@ -318,7 +318,7 @@ export function LoginForm({
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card className="w-full">
+      <Card className="w-full p-0">
         <CardContent className="flex flex-col gap-6 items-center p-6">
           {step === "form" && (
             <EmailForm
