@@ -97,7 +97,11 @@ export default function Navbar() {
         onOpenChange={setMobileMenuOpen}
       >
         <DrawerTrigger
-          className={buttonVariants({ variant: "outline", size: "icon" })}
+          className={buttonVariants({
+            variant: "outline",
+            size: "icon",
+            className: "md:hidden",
+          })}
         >
           <Menu />
         </DrawerTrigger>
