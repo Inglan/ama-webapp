@@ -21,7 +21,7 @@ export default function Home() {
           <Link href="/join">Join Now</Link>
         </Button>
       </div>
-      <div className="prose prose-invert mx-auto py-4">
+      <div className="prose prose-invert mx-auto p-4">
         <h2>The Program</h2>
         <p>
           The Aranda Music & Arts program provides affordable school-based
