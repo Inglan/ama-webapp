@@ -16,6 +16,9 @@ export default function Home() {
           An after school music, drama and art program
         </h2>
       </div>
+      <div className="prose prose-invert mx-auto py-4">
+        <h1>e</h1>
+      </div>
     </>
   );
 }
