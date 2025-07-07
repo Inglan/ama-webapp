@@ -58,11 +58,9 @@ function Form({
         </svg>
         Continue with Google
       </Button>
-      <div className="m-1 relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
-        <span className="relative z-10 bg-card px-2 text-muted-foreground">
-          Or use an email
-        </span>
-      </div>
+      <span className="relative z-10 text-sm px-2 text-muted-foreground">
+        Or use an email
+      </span>
       <form
         className="w-full flex flex-row gap-3"
         onSubmit={(event) => {
@@ -154,7 +152,7 @@ export function LoginForm({
   const [code, setCode] = useState("");
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      <Card className="w-96">
+      <Card className="w-full">
         <CardContent className="flex flex-col gap-3 items-center">
           {step == "form" && (
             <Form
