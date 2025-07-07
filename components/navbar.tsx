@@ -15,7 +15,17 @@ import Link from "next/link";
 import { Authenticated, Unauthenticated, AuthLoading } from "convex/react";
 import { LoaderCircle, Menu } from "lucide-react";
 import { useAuthActions } from "@convex-dev/auth/react";
-import { Button } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
 
 const menu = [
   {
@@ -79,9 +89,54 @@ export default function Navbar() {
           </Button>
         </NavigationMenuList>
       </NavigationMenu>
-      <Button className="md:hidden" size="icon">
-        <Menu />
-      </Button>
+      <Drawer direction="right">
+        <DrawerTrigger
+          className={buttonVariants({ variant: "outline", size: "icon" })}
+        >
+          <Menu />
+        </DrawerTrigger>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>Aranda Music and Arts</DrawerTitle>
+          </DrawerHeader>
+          <div className="flex flex-col gap-3 p-3">
+            {menu.map((item) => (
+              <Button
+                variant="ghost"
+                key={item.href}
+                className="justify-start"
+                asChild
+              >
+                <Link href={item.href}>{item.name}</Link>
+              </Button>
+            ))}
+
+            <AuthLoading>
+              <LoaderCircle className="w-4 h-4 animate-spin" />
+            </AuthLoading>
+            <Authenticated>
+              <Button variant="ghost" className="justify-start" asChild>
+                <Link href="/dashboard">Dashboard</Link>
+              </Button>
+              <Button
+                onClick={signOut}
+                variant="outline"
+                className="cursor-pointer"
+              >
+                Sign Out
+              </Button>
+            </Authenticated>
+            <Unauthenticated>
+              <Button variant="outline" asChild>
+                <Link href="/login">Login</Link>
+              </Button>
+            </Unauthenticated>
+            <Button variant="default" asChild>
+              <Link href="/join">Join Now</Link>
+            </Button>
+          </div>
+        </DrawerContent>
+      </Drawer>
     </div>
   );
 }
