@@ -1,5 +1,4 @@
 import { query } from "./_generated/server";
-import { getRole } from "./lib/roles";
 import { getAuthUserId } from "@convex-dev/auth/server";
 
 export const get = query({
@@ -7,6 +6,8 @@ export const get = query({
   handler: async (ctx) => {
     const userId = await getAuthUserId(ctx);
     if (!userId) return false;
-    return getRole(ctx, userId);
+    const user = await ctx.db.get(userId);
+    if (!user) return false;
+    return { role: user.role, email: user.email, id: userId };
   },
 });
