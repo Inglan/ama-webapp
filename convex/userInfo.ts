@@ -8,6 +8,6 @@ export const get = query({
     if (!userId) return false;
     const user = await ctx.db.get(userId);
     if (!user) return false;
-    return { role: user.role, email: user.email, id: userId };
+    return { role: user.role, email: user.email, id: userId, name: user.name };
   },
 });
