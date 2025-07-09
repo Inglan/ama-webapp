@@ -1,5 +1,7 @@
+import { Button } from "@/components/ui/button";
 import { columns, Contact } from "./columns";
 import { DataTable } from "./data-table";
+import { Plus } from "lucide-react";
 
 export default function ContactsPage() {
   const data: Contact[] = [
@@ -26,6 +28,11 @@ export default function ContactsPage() {
   return (
     <div className="max-w-2xl w-full mx-auto p-3 gap-3 flex flex-col">
       <h1 className="text-3xl">Emergency Contacts</h1>
+      <div className="flex flex-row justify-end">
+        <Button>
+          <Plus /> Add Contact
+        </Button>
+      </div>
       <DataTable data={data} columns={columns} />
     </div>
   );
