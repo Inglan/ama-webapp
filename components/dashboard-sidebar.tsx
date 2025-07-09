@@ -14,10 +14,10 @@ import { Home } from "lucide-react";
 import Link from "next/link";
 
 const parentMenuItems: { label: string; href: string }[] = [
-  { label: "Students", href: "students" },
-  { label: "Contacts", href: "contacts" },
-  { label: "Enroll", href: "enroll" },
-  { label: "Enrolled Activities", href: "enrollments" },
+  { label: "Students", href: "/dashboard/students" },
+  { label: "Contacts", href: "/dashboard/contacts" },
+  { label: "Enroll", href: "/dashboard/enroll" },
+  { label: "Enrolled Activities", href: "/dashboard/enrollments" },
 ];
 
 export function DashboardSidebar() {
