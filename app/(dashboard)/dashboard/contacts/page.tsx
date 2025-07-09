@@ -1,9 +1,26 @@
-import { columns, Payment } from "./columns";
+import { columns, Contact } from "./columns";
 import { DataTable } from "./data-table";
 
 export default function ContactsPage() {
-  const data: Payment[] = [
-    { id: "728ed52f", amount: 100, status: "pending", email: "m@example.com" },
+  const data: Contact[] = [
+    {
+      name: "John Doe",
+      email: "john@example.com",
+      phoneNumber: "123-456-7890",
+      relationship: "Father",
+    },
+    {
+      name: "Jane Smith",
+      email: "jane@example.com",
+      phoneNumber: "987-654-3210",
+      relationship: "Mother",
+    },
+    {
+      name: "Bob Johnson",
+      email: "bob@example.com",
+      phoneNumber: "555-555-5555",
+      relationship: "Brother",
+    },
   ];
 
   return (

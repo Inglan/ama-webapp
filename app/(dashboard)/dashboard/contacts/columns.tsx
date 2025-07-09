@@ -2,24 +2,29 @@
 
 import { ColumnDef } from "@tanstack/react-table";
 
-export type Payment = {
-  id: string;
-  amount: number;
-  status: "pending" | "processing" | "success" | "failed";
+export type Contact = {
+  name: string;
+  phoneNumber: string;
+  altPhoneNumber?: string;
   email: string;
+  relationship: string;
 };
 
-export const columns: ColumnDef<Payment>[] = [
+export const columns: ColumnDef<Contact>[] = [
   {
-    accessorKey: "status",
-    header: "Status",
+    accessorKey: "name",
+    header: "Name",
+  },
+  {
+    accessorKey: "phoneNumber",
+    header: "Phone Number",
   },
   {
     accessorKey: "email",
     header: "Email",
   },
   {
-    accessorKey: "amount",
-    header: "Amount",
+    accessorKey: "relationship",
+    header: "Relationship",
   },
 ];
