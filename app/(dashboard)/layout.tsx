@@ -1,29 +1,11 @@
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarHeader,
-  SidebarProvider,
-  SidebarTrigger,
-} from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { DashboardSidebar } from "@/components/dashboard-sidebar";
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider>
+      <DashboardSidebar />
       <main>
-        <Sidebar>
-          <SidebarHeader />
-          <SidebarContent>
-            <SidebarGroup />
-            <SidebarGroup />
-          </SidebarContent>
-          <SidebarFooter />
-        </Sidebar>
         <SidebarTrigger />
         {children}
       </main>
