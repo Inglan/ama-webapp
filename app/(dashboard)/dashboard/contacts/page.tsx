@@ -1,29 +1,14 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { columns, Contact } from "./columns";
 import { DataTable } from "./data-table";
-import { Plus } from "lucide-react";
+import { Loader2, Plus } from "lucide-react";
+import { useQuery } from "convex/react";
+import { api } from "@/convex/_generated/api";
 
 export default function ContactsPage() {
-  const data: Contact[] = [
-    {
-      name: "John Doe",
-      email: "john@example.com",
-      phoneNumber: "123-456-7890",
-      relationship: "Father",
-    },
-    {
-      name: "Jane Smith",
-      email: "jane@example.com",
-      phoneNumber: "987-654-3210",
-      relationship: "Mother",
-    },
-    {
-      name: "Bob Johnson",
-      email: "bob@example.com",
-      phoneNumber: "555-555-5555",
-      relationship: "Brother",
-    },
-  ];
+  const data = useQuery(api.contacts.get);
 
   return (
     <div className="max-w-2xl w-full mx-auto p-3 gap-3 flex flex-col">
@@ -33,7 +18,13 @@ export default function ContactsPage() {
           <Plus /> Add Contact
         </Button>
       </div>
-      <DataTable data={data} columns={columns} />
+      {data ? (
+        <DataTable data={data} columns={columns} />
+      ) : (
+        <div className="w-full p-10 border rounded-md flex justify-center items-center">
+          <Loader2 className="animate-spin" />
+        </div>
+      )}
     </div>
   );
 }
