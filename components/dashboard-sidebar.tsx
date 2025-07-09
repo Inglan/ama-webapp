@@ -16,7 +16,8 @@ import Link from "next/link";
 const parentMenuItems: { label: string; href: string }[] = [
   { label: "Students", href: "students" },
   { label: "Contacts", href: "contacts" },
-  { label: "Enrollments", href: "enrollments" },
+  { label: "Enroll", href: "enroll" },
+  { label: "Enrolled Activities", href: "enrollments" },
 ];
 
 export function DashboardSidebar() {
