@@ -5,10 +5,11 @@ import { ColumnDef } from "@tanstack/react-table";
 import { Edit2, X } from "lucide-react";
 
 export type Contact = {
+  id: string;
   name: string;
+  email: string;
   phoneNumber: string;
   altPhoneNumber?: string;
-  email: string;
   relationship: string;
 };
 
