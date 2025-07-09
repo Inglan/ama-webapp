@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/input-otp";
 import { Input } from "@/components/ui/input";
 import { useAuthActions } from "@convex-dev/auth/react";
-import { useState, useCallback } from "react";
+import { useState, useCallback, Dispatch, SetStateAction } from "react";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { toast } from "sonner";
 
@@ -25,6 +25,7 @@ interface FormProps {
   onEmailChange: (email: string) => void;
   onSubmit: (email: string) => Promise<void>;
   isLoading: boolean;
+  setStep: Dispatch<SetStateAction<AuthStep>>;
 }
 
 interface OTPProps {
@@ -47,6 +48,7 @@ function EmailForm({
   onEmailChange,
   onSubmit,
   isLoading,
+  setStep,
 }: FormProps) {
   const { signIn } = useAuthActions();
 
@@ -56,6 +58,7 @@ function EmailForm({
    */
   const handleGoogleSignIn = useCallback(async () => {
     try {
+      setStep("loading");
       await signIn("google");
     } catch (error) {
       console.error("Google sign-in failed:", error);
@@ -327,6 +330,7 @@ export function LoginForm({
               onEmailChange={handleEmailChange}
               onSubmit={handleEmailSubmit}
               isLoading={isLoading}
+              setStep={setStep}
             />
           )}
 
