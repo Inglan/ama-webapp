@@ -75,7 +75,9 @@ export function DashboardSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton>{userInfo?.email}</SidebarMenuButton>
+                <SidebarMenuButton>
+                  {userInfo?.name || userInfo?.email}
+                </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton onClick={signOut}>
