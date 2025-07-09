@@ -18,7 +18,7 @@ import { usePathname } from "next/navigation";
 
 const parentMenuItems: { label: string; href: string }[] = [
   { label: "Students", href: "/dashboard/students" },
-  { label: "Contacts", href: "/dashboard/contacts" },
+  { label: "Emergency Contacts", href: "/dashboard/contacts" },
   { label: "Enroll", href: "/dashboard/enroll" },
   { label: "Enrolled Activities", href: "/dashboard/enrollments" },
 ];
