@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Sidebar,
   SidebarContent,
@@ -12,6 +14,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Home } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const parentMenuItems: { label: string; href: string }[] = [
   { label: "Students", href: "/dashboard/students" },
@@ -21,6 +24,7 @@ const parentMenuItems: { label: string; href: string }[] = [
 ];
 
 export function DashboardSidebar() {
+  const pathName = usePathname();
   return (
     <Sidebar>
       <SidebarHeader>
@@ -47,7 +51,10 @@ export function DashboardSidebar() {
               {parentMenuItems.map((item) => {
                 return (
                   <SidebarMenuItem key={item.href}>
-                    <SidebarMenuButton asChild>
+                    <SidebarMenuButton
+                      isActive={pathName === item.href}
+                      asChild
+                    >
                       <Link href={item.href}>{item.label}</Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
