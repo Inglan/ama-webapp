@@ -27,6 +27,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const menu = [
   {
@@ -74,7 +75,13 @@ export default function Navbar() {
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuLink onClick={signOut} className="cursor-pointer">
+              <NavigationMenuLink
+                onClick={() => {
+                  toast.success("Signed out successfully");
+                  signOut();
+                }}
+                className="cursor-pointer"
+              >
                 Sign Out
               </NavigationMenuLink>
             </NavigationMenuItem>
