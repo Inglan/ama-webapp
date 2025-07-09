@@ -12,8 +12,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { api } from "@/convex/_generated/api";
 import { useAuthActions } from "@convex-dev/auth/react";
-import { useConvexAuth } from "convex/react";
+import { useConvexAuth, useQuery } from "convex/react";
 import { Home, LogOut } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -27,6 +28,8 @@ const parentMenuItems: { label: string; href: string }[] = [
 
 export function DashboardSidebar() {
   const pathName = usePathname();
+  const userInfo = useQuery(api.userInfo.get);
+
   const { signOut } = useAuthActions();
   return (
     <Sidebar>
@@ -72,7 +75,7 @@ export function DashboardSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
-                <SidebarMenuButton>{}</SidebarMenuButton>
+                <SidebarMenuButton>{userInfo?.email}</SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
                 <SidebarMenuButton onClick={signOut}>
