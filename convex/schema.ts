@@ -14,7 +14,7 @@ export default defineSchema({
         v.literal("superadmin"),
         v.literal("admin"),
         v.literal("parent"),
-        v.literal("teacher"),
+        v.literal("tutor"),
       ),
     ),
   }).index("email", ["email"]),

@@ -26,6 +26,12 @@ const parentMenuItems: { label: string; href: string }[] = [
   { label: "Enrolled Activities", href: "/dashboard/enrollments" },
 ];
 
+const tutorMenuItems: { label: string; href: string }[] = [
+  { label: "Enrollments", href: "/dashboard/tutor/enrollments" },
+  { label: "Activities", href: "/dashboard/tutor/activities" },
+  { label: "Profile", href: "/dashboard/tutor/profile" },
+];
+
 export function DashboardSidebar() {
   const pathName = usePathname();
   const userInfo = useQuery(api.userInfo.get);
