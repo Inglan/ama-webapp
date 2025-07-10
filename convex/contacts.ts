@@ -55,7 +55,7 @@ export const update = mutation({
     name: v.string(),
     email: v.string(),
     phoneNumber: v.string(),
-    altPhoneNumber: v.string(),
+    altPhoneNumber: v.optional(v.string()),
     relationship: v.string(),
   },
   handler: async (
