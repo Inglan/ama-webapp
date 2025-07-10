@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { api } from "@/convex/_generated/api";
+import { Id } from "@/convex/_generated/dataModel";
 import { ColumnDef } from "@tanstack/react-table";
 import { useMutation } from "convex/react";
 import { Edit2, X } from "lucide-react";
@@ -44,7 +45,7 @@ export const columns: ColumnDef<Contact>[] = [
           <Button
             size="icon"
             variant="destructive"
-            onClick={() => remove({ id: row.original.id })}
+            onClick={() => remove({ id: row.original.id as Id<"contacts"> })}
           >
             <X />
           </Button>
