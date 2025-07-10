@@ -134,8 +134,8 @@ export function DashboardSidebar() {
               <SidebarMenuItem>
                 <SidebarMenuButton>
                   {userInfo?.name || userInfo?.email} -{" "}
-                  {userInfo?.role?.charAt(0).toUpperCase() ||
-                    "" + (userInfo?.role?.slice(1) || "no role...??")}
+                  {(userInfo?.role?.charAt(0).toUpperCase() || "") +
+                    (userInfo?.role?.slice(1) || "no role...??")}
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
