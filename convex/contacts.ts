@@ -1,4 +1,5 @@
-import { query } from "./_generated/server";
+import { v } from "convex/values";
+import { mutation, query } from "./_generated/server";
 import { getAuthUserId } from "@convex-dev/auth/server";
 
 export const get = query({
@@ -19,5 +20,69 @@ export const get = query({
       altPhoneNumber: contact.altPhoneNumber,
       relationship: contact.relationship,
     }));
+  },
+});
+
+export const add = mutation({
+  args: {
+    name: v.string(),
+    email: v.string(),
+    phoneNumber: v.string(),
+    altPhoneNumber: v.string(),
+    relationship: v.string(),
+  },
+  handler: async (
+    ctx,
+    { name, email, phoneNumber, altPhoneNumber, relationship },
+  ) => {
+    const userId = await getAuthUserId(ctx);
+    if (!userId) throw new Error("Unauthorized");
+
+    await ctx.db.insert("contacts", {
+      userId,
+      name,
+      email,
+      phoneNumber,
+      altPhoneNumber,
+      relationship,
+    });
+  },
+});
+
+export const update = mutation({
+  args: {
+    id: v.id("contacts"),
+    name: v.string(),
+    email: v.string(),
+    phoneNumber: v.string(),
+    altPhoneNumber: v.string(),
+    relationship: v.string(),
+  },
+  handler: async (
+    ctx,
+    { id, name, email, phoneNumber, altPhoneNumber, relationship },
+  ) => {
+    const userId = await getAuthUserId(ctx);
+    if (!userId) throw new Error("Unauthorized");
+
+    await ctx.db.patch(id, {
+      name,
+      email,
+      phoneNumber,
+      altPhoneNumber,
+      relationship,
+    });
+  },
+});
+
+export const remove = mutation({
+  args: {
+    id: v.id("contacts"),
+  },
+  handler: async (ctx, { id }) => {
+    const userId = await getAuthUserId(ctx);
+    if (!userId) throw new Error("Unauthorized");
+
+    await ctx.db.delete(id);
   },
 });
