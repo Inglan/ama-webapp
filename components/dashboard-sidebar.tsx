@@ -34,8 +34,8 @@ const tutorMenuItems: { label: string; href: string }[] = [
 
 const adminMenuItems: { label: string; href: string }[] = [
   { label: "Dashboard", href: "/dashboard/admin" },
-  { label: "Parents", href: "/dashboard/admin/parents" },
   { label: "Enrollments", href: "/dashboard/admin/enrollments" },
+  { label: "Parents", href: "/dashboard/admin/parents" },
   { label: "Tutors", href: "/dashboard/admin/tutors" },
   { label: "Activities", href: "/dashboard/admin/activities" },
   { label: "Users", href: "/dashboard/admin/users" },
