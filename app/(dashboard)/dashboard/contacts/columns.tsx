@@ -16,6 +16,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { useState } from "react";
+import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
 
 export type Contact = {
   id: string;
@@ -47,8 +51,88 @@ export const columns: ColumnDef<Contact>[] = [
     id: "actions",
     cell: ({ row }) => {
       const remove = useMutation(api.contacts.remove);
+      const update = useMutation(api.contacts.update);
+
       return (
         <div className="flex flex-row gap-2 justify-end">
+          <Dialog>
+            <DialogTrigger
+              className={buttonVariants({
+                variant: "outline",
+                size: "icon",
+              })}
+            >
+              <Edit2 />
+            </DialogTrigger>
+            <form
+              onSubmit={() => {
+                alert();
+              }}
+            >
+              <DialogContent>
+                <DialogTitle>Edit</DialogTitle>
+                <div className="grid w-full items-center gap-3">
+                  <Label htmlFor="name">Name</Label>
+                  <Input
+                    id="name"
+                    placeholder="Name"
+                    type="text"
+                    defaultValue={row.original.name}
+                  />
+                </div>
+
+                <div className="grid w-full items-center gap-3">
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    placeholder="Email"
+                    type="email"
+                    defaultValue={row.original.email}
+                  />
+                </div>
+
+                <div className="grid w-full items-center gap-3">
+                  <Label htmlFor="phoneNumber">Phone Number</Label>
+                  <Input
+                    id="phoneNumber"
+                    placeholder="Phone Number"
+                    type="tel"
+                    defaultValue={row.original.phoneNumber}
+                  />
+                </div>
+
+                <div className="grid w-full items-center gap-3">
+                  <Label htmlFor="altPhoneNumber">Alternate Phone Number</Label>
+                  <Input
+                    id="altPhoneNumber"
+                    placeholder="Alternate Phone Number"
+                    type="tel"
+                    defaultValue={row.original.altPhoneNumber}
+                  />
+                </div>
+                <div className="grid w-full items-center gap-3">
+                  <Label htmlFor="relationship">Relationship</Label>
+                  <Input
+                    id="relationship"
+                    placeholder="Relationship"
+                    type="text"
+                    defaultValue={row.original.relationship}
+                  />
+                </div>
+
+                <DialogFooter>
+                  <DialogClose asChild>
+                    <Button variant="outline">Cancel</Button>
+                  </DialogClose>
+                  <DialogClose asChild>
+                    <Button variant="default" type="submit">
+                      Save
+                    </Button>
+                  </DialogClose>
+                </DialogFooter>
+              </DialogContent>
+            </form>
+          </Dialog>
           <Button size="icon" variant="ghost">
             <Edit2 />
           </Button>
