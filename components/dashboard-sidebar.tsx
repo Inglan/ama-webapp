@@ -129,7 +129,7 @@ export function DashboardSidebar() {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton>
-                  {userInfo?.name || userInfo?.email}
+                  {userInfo?.name || userInfo?.email} - {userInfo?.role}
                 </SidebarMenuButton>
               </SidebarMenuItem>
               <SidebarMenuItem>
