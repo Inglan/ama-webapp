@@ -32,6 +32,15 @@ const tutorMenuItems: { label: string; href: string }[] = [
   { label: "Profile", href: "/dashboard/tutor/profile" },
 ];
 
+const adminMenuItems: { label: string; href: string }[] = [
+  { label: "Dashboard", href: "/dashboard/admin" },
+  { label: "Parents", href: "/dashboard/admin/parents" },
+  { label: "Tutors", href: "/dashboard/admin/tutors" },
+  { label: "Users", href: "/dashboard/admin/users" },
+  { label: "Activities", href: "/dashboard/admin/activities" },
+  { label: "Enrollments", href: "/dashboard/admin/enrollments" },
+];
+
 export function DashboardSidebar() {
   const pathName = usePathname();
   const userInfo = useQuery(api.userInfo.get);
