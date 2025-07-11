@@ -45,18 +45,19 @@ export type Contact = {
 };
 
 const updateFormSchema = z.object({
-  name: z.string().min(2),
-  email: z.string().email(),
+  name: z.string().min(2, "Please enter a name"),
+  email: z.email(),
   phoneNumber: z
     .string()
-    .min(2)
-    .regex(/^[0-9]*$/),
+    .min(2, "Please enter a phone number")
+    .regex(/^[0-9]*$/, "Please enter a valid phone number"),
   altPhoneNumber: z
     .string()
-    .regex(/^[0-9]*$/)
+    .min(2, "Please enter a phone number")
+    .regex(/^[0-9]*$/, "Please enter a valid phone number")
     .optional()
     .or(z.literal("")),
-  relationship: z.string().min(2),
+  relationship: z.string().min(2, "Please enter a relationship"),
 });
 
 const ContactActionsCell = ({ row }: { row: Row<Contact> }) => {
@@ -210,11 +211,10 @@ const ContactActionsCell = ({ row }: { row: Row<Contact> }) => {
 
         <DialogContent>
           <DialogTitle>
-            Are you sure you would like to delete &quot;{row.original.name}&quot;?
+            Are you sure you would like to delete &quot;{row.original.name}
+            &quot;?
           </DialogTitle>
-          <DialogDescription>
-            This action cannot be undone.
-          </DialogDescription>
+          <DialogDescription>This action cannot be undone.</DialogDescription>
           <DialogFooter>
             <DialogClose asChild>
               <Button variant="outline">Cancel</Button>
