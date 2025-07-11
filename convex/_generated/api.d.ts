@@ -17,6 +17,7 @@ import type * as auth from "../auth.js";
 import type * as contacts from "../contacts.js";
 import type * as http from "../http.js";
 import type * as resendotp from "../resendotp.js";
+import type * as students from "../students.js";
 import type * as userInfo from "../userInfo.js";
 
 /**
@@ -32,6 +33,7 @@ declare const fullApi: ApiFromModules<{
   contacts: typeof contacts;
   http: typeof http;
   resendotp: typeof resendotp;
+  students: typeof students;
   userInfo: typeof userInfo;
 }>;
 export declare const api: FilterApi<
