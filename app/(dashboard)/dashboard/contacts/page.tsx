@@ -31,18 +31,19 @@ import {
 import { Input } from "@/components/ui/input";
 
 const addFormSchema = z.object({
-  name: z.string().min(2),
-  email: z.string().email(),
+  name: z.string().min(2, "Please enter a name"),
+  email: z.email(),
   phoneNumber: z
     .string()
-    .min(2)
-    .regex(/^[0-9]*$/),
+    .min(2, "Please enter a phone number")
+    .regex(/^[0-9]*$/, "Please enter a valid phone number"),
   altPhoneNumber: z
     .string()
-    .regex(/^[0-9]*$/)
+    .min(2, "Please enter a phone number")
+    .regex(/^[0-9]*$/, "Please enter a valid phone number")
     .optional()
     .or(z.literal("")),
-  relationship: z.string().min(2),
+  relationship: z.string().min(2, "Please enter a relationship"),
 });
 
 export default function ContactsPage() {
@@ -172,16 +173,14 @@ export default function ContactsPage() {
                 />
 
                 <DialogFooter>
-                  <Button 
-                    type="button" 
-                    variant="outline" 
+                  <Button
+                    type="button"
+                    variant="outline"
                     onClick={() => setIsAddDialogOpen(false)}
                   >
                     Cancel
                   </Button>
-                  <Button type="submit">
-                    Add Contact
-                  </Button>
+                  <Button type="submit">Add Contact</Button>
                 </DialogFooter>
               </form>
             </Form>
