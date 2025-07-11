@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-// import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ConvexClientProvider } from "./ConvexClientProvider";
@@ -9,17 +9,17 @@ import Navbar from "@/components/navbar";
 import Link from "next/link";
 
 // Font configuration for optimal loading and performance
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-//   display: "swap", // Improve font loading performance
-// });
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+  display: "swap", // Improve font loading performance
+});
 
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-//   display: "swap", // Improve font loading performance
-// });
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+  display: "swap", // Improve font loading performance
+});
 
 // SEO and metadata configuration
 export const metadata: Metadata = {
@@ -131,7 +131,7 @@ export default function RootLayout({
           />
         </head>
         <body
-          className={`antialiased min-h-screen bg-background font-sans`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-background font-sans`}
         >
           <ConvexClientProvider>
             <ThemeProvider
