@@ -9,16 +9,18 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "./ui/alert-dialog";
-import { useQuery } from "convex/react";
+import { useMutation, useQuery } from "convex/react";
 import { Input } from "./ui/input";
 import { Label } from "./ui/label";
 import { useEffect, useState } from "react";
+import { Button } from "./ui/button";
 
 export default function Onboarding() {
   const userInfo = useQuery(api.userInfo.get);
+  const completeOnboarding = useMutation(api.userInfo.completeOnboarding);
   const [nameInput, setNameInput] = useState("");
   useEffect(() => {
-    if (userInfo && userInfo.name === "") {
+    if (userInfo?.name) {
       setNameInput(userInfo.name);
     }
   }, [userInfo]);
@@ -41,7 +43,15 @@ export default function Onboarding() {
             onChange={(e) => setNameInput(e.target.value)}
           />
         </div>
-        <AlertDialogFooter></AlertDialogFooter>
+        <AlertDialogFooter>
+          <Button
+            onClick={() => {
+              completeOnboarding({ name: nameInput });
+            }}
+          >
+            Continue
+          </Button>
+        </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
   );
