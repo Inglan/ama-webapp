@@ -47,14 +47,6 @@ export default function StudentsPage() {
 
   const addForm = useForm<z.infer<typeof addFormSchema>>({
     resolver: zodResolver(addFormSchema),
-    defaultValues: {
-      name: "",
-      studentId: "",
-      dobDay: 1,
-      dobMonth: 1,
-      dobYear: 2010,
-      notes: "",
-    },
   });
 
   async function onAddFormSubmit(values: z.infer<typeof addFormSchema>) {
@@ -143,7 +135,9 @@ export default function StudentsPage() {
                               min="1"
                               max="31"
                               {...field}
-                              onChange={(e) => field.onChange(parseInt(e.target.value) || 1)}
+                              onChange={(e) =>
+                                field.onChange(parseInt(e.target.value) || 1)
+                              }
                             />
                           </FormControl>
                           <FormMessage />
@@ -163,7 +157,9 @@ export default function StudentsPage() {
                               min="1"
                               max="12"
                               {...field}
-                              onChange={(e) => field.onChange(parseInt(e.target.value) || 1)}
+                              onChange={(e) =>
+                                field.onChange(parseInt(e.target.value) || 1)
+                              }
                             />
                           </FormControl>
                           <FormMessage />
@@ -183,7 +179,9 @@ export default function StudentsPage() {
                               min="1900"
                               max="2030"
                               {...field}
-                              onChange={(e) => field.onChange(parseInt(e.target.value) || 2000)}
+                              onChange={(e) =>
+                                field.onChange(parseInt(e.target.value) || 2000)
+                              }
                             />
                           </FormControl>
                           <FormMessage />
@@ -200,7 +198,10 @@ export default function StudentsPage() {
                     <FormItem>
                       <FormLabel>Notes</FormLabel>
                       <FormControl>
-                        <Textarea {...field} placeholder="Notes about the student" />
+                        <Textarea
+                          {...field}
+                          placeholder="Notes about the student"
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
