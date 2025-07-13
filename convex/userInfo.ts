@@ -1,4 +1,5 @@
-import { query } from "./_generated/server";
+import { v } from "convex/values";
+import { mutation, query } from "./_generated/server";
 import { getAuthUserId } from "@convex-dev/auth/server";
 
 export const get = query({
@@ -15,5 +16,17 @@ export const get = query({
       name: user.name,
       doneOnboarding: user.doneOnboarding || false,
     };
+  },
+});
+
+export const completeOnboarding = mutation({
+  args: {
+    name: v.string(),
+  },
+  handler: async (ctx, args) => {
+    const userId = await getAuthUserId(ctx);
+    if (!userId) return null;
+    await ctx.db.patch(userId, { doneOnboarding: true, name: args.name });
+    return true;
   },
 });
