@@ -20,6 +20,7 @@ export default defineSchema({
         v.literal("tutor"),
       ),
     ),
+    doneOnboarding: v.optional(v.boolean()),
   }).index("email", ["email"]),
   contacts: defineTable({
     userId: v.id("users"),
